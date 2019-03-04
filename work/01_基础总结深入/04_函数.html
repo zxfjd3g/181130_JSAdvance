@@ -35,6 +35,41 @@
     3. 如果大于60, 输出: 算了吧!
     4. 其它, 输出: 刚好!
   */
+  function showInfo(age) {
+    if(age<18) {
+      console.log('未成年, 再等等!')
+    } else if (age>60) {
+      console.log('算了吧!')
+    } else {
+      console.log('刚好!')
+    }
+  }
+
+  showInfo(17)
+  showInfo(20)
+  showInfo(62)
+
+  // 函数声明
+  function fn1() {
+
+  }
+  // 表达式
+  var fn2 = function () {
+
+  }
+
+  // 函数也是对象
+  function fn() {
+    console.log('fn()', this)
+  }
+  console.log(fn instanceof Object) // true  函数是Object类型的实例
+  console.log(fn.prototype, fn.call) // 原型对象, 函数   函数对象上有属性/方法
+  fn.test1 = 'abc' // 给fn对象添加属性
+  fn.test2 = function () { // 给fn对象添加方法
+
+  }
+
+
 
 </script>
 </body>

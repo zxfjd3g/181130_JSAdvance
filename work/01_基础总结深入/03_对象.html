@@ -31,7 +31,23 @@
   * ['属性名']: 编码麻烦, 但通用
 -->
 <script type="text/javascript">
+  // 如何创建对象
+  var p = {
+    'name': 'Tom',
+    age: 18,
+    setName: function (name) {
+      this.name = name
+    },
+    setAge: function (age) {
+      this.age = age
+    }
+  }
 
+  // 访问对象内部数据
+  console.log(p.name, p['age'])
+  p.setName('Jack')
+  p['setAge'](20)
+  console.log(p.name, p['age'])
 
 </script>
 </body>

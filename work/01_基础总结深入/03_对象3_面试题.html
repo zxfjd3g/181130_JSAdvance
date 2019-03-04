@@ -7,7 +7,20 @@
 <body>
 
 <script type="text/javascript">
+  var a = {}
+  var obj1 = {n: 2}
+  var obj2 = {m: 3}
+  a[obj1.toString()] = 4
+  a[obj2.toString()] = 5
+  console.log(a[obj1]) // 输出多少?
+  console.log(a, obj1.toString(), obj2.toString())
 
+  var arr1 = [1, 3, 5]
+  console.log(arr1.toString())
+  var arr2 = [1, 3, 6]
+  a[arr1] = 6
+  a[arr2] = 7
+  console.log(a[arr1], a[arr2]) //
 </script>
 </body>
 </html>
