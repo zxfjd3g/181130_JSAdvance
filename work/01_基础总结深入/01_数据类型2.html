@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01_相关问题</title>
+</head>
+<body>
+<!--
+1. undefined与null的区别?
+  * undefined代表没有赋值
+  * null代表赋值了, 只是值为null
+
+2. 什么时候给变量赋值为null呢?
+  * var a = null //a将指向一个对象, 但对象此时还没有确定
+  * a = null //让a指向的对象成为垃圾对象
+
+3. 严格区别变量类型与数据类型?
+  * js的变量本身是没有类型的, 变量的类型实际上是变量内存中数据的类型
+  * 变量类型:
+    * 基本类型: 保存基本类型数据的变量
+    * 引用类型: 保存对象地址值的变量
+  * 数据对象
+    * 基本类型
+    * 对象类型
+-->
+
+<script type="text/javascript">
+  // 1. undefined与null的区别?
+  var a1 // 定义了变量, 但没有赋值
+  console.log(a1) // undefined
+  var a2 = null // 定义了变量,只是赋值为null
+  console.log(a2) // null
+
+  // 2. 什么时候给变量赋值为null呢?
+
+  // 开始
+  var a3 = null  // 将来要保存对象的, 但现在对象还没有创建
+  // 过程中创建对象
+  var name = 'tom'
+  var age = 12
+  a3 = {
+    name: name,
+    age: age
+  }
+  // 结束
+  a3 = null // 为了让a3原本指向对象成为垃圾对象, 从而被回收释放
+  // a3变量的内存并没有释放
+
+  // 3. 严格区别变量类型与数据类型?
+  /*
+  数据类型:
+    1. 基本类型
+    2. 对象类型
+   */
+  /*
+  变量类型:
+    1. 基本类型: 保存基本类型的数据
+    2. 引用类型: 保存地址值数据
+   */
+  var a4 = 'abc'
+  var a5 = []
+
+
+
+
+</script>
+</body>
+</html>

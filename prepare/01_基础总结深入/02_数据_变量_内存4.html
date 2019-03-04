@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02_关于数据传递问题</title>
+</head>
+<body>
+<!--
+问题: 在js调用函数时传递变量参数时, 是值传递还是引用传递
+  只有值传递, 没有引用传递, 传递的都是变量的值, 只是这个值可能是基本数据, 也可能是地址(引用)数据
+-->
+<script type="text/javascript">
+  function fn(a) {
+    console.log(a)
+  }
+
+  var b = 3
+  fn(b) // 传递给a的是b变量的值, 值为基本类型的数据--3
+
+  b = {}
+  fn(b) // 传递给a的是b变量的值, 值为一个地址值---{}的地址值(不是b的地址值)
+
+  /*
+  扩展问题: 将一个对象传递给形参是不是比传递数值更费力呢?
+   */
+</script>
+</body>
+</html>

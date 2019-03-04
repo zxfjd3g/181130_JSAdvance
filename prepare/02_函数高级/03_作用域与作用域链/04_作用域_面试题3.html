@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04_作用域_面试题3</title>
+</head>
+<body>
+<script type="text/javascript">
+  /*
+   说说它们的输出情况
+   */
+
+	var scope = "global scope";
+	function checkscope(){
+		var scope = "local scope";
+		function f(){
+			return scope;
+		}
+		return f();
+	}
+	checkscope();
+
+	var scope = "global scope";
+	function checkscope(){
+		var scope = "local scope";
+		function f(){
+			return scope;
+		}
+		return f;
+	}
+	checkscope()();
+</script>
+</body>
+</html>
