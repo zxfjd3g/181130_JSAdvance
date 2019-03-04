@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>04_函数3_IIEF</title>
+  <title>04_函数3_IIFE</title>
 </head>
 <body>
 <!--
@@ -15,6 +15,21 @@
 -->
 <script type="text/javascript">
 
+  var a = 2
+  var b = 3
+  function sum() {
+    return a + b
+  }
+
+  (function () {
+    var a = 2
+    var b = 3
+    function fn() {
+      return a + b
+    }
+    window.fn = fn
+  })()
+  fn()
 </script>
 
 </body>

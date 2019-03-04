@@ -69,8 +69,44 @@
 
   }
 
+  // 如何调用(执行)函数?
+  var obj = {
+    fn3: function () {
+      console.log('fn3()', this)
+      this.m = 123
+    }
+  }
 
+  var fn3 = obj.fn3
 
+  fn3()   // 直接调用 this是window
+  console.log('m', m)
+
+  var newObj = new fn3() // new调用  this是新创建的对象
+  console.log('newObj.m', newObj.m)
+
+  obj.fn3() // 对象调用  this就是那个对象
+  console.log('obj.m', obj.m)
+
+  const obj2 = {}
+  fn3.call(obj2)  // 通过call调用, this就是obj2
+  console.log('obj2.m', obj2.m)
+
+  /*
+  函数的2种角色
+  * 函数: 通过()使用
+  * 对象: 通过.使用  ==> 称之为: 函数对象: 将函数作为对象使用
+   */
+  function fn5() {
+
+  }
+  // 给fn5函数对象添加一个test方法
+  fn5.test = function () {
+
+  }
+  // 调用fn5函数对象的test方法
+  fn5.test()
+  // new fn5().test()  // 实例对象不能调用
 </script>
 </body>
 </html>

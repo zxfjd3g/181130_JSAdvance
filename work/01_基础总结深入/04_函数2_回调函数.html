@@ -19,6 +19,33 @@
 -->
 <script type="text/javascript">
 
+  var btn = document.getElementById('btn')
+  // 给按钮绑定一个点击事件监听(回调函数)
+  btn.onclick = function () {
+    console.log('点击事件监听回调执行', this.textContent)
+  }
+
+  // 启动循环定时器 
+  setInterval(function () { // 回调函数
+    console.log('定时器回调函数执行了')
+  }, 2000)
+  
+  function fn() {
+    console.log('fn()')
+  }
+  btn.onclick = fn
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
