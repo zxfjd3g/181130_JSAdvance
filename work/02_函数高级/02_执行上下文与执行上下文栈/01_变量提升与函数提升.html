@@ -25,6 +25,32 @@
     var a = 5
   }
   fn()
+
+  // 变量提升: 将变量声明语句提前执行   变量声明提升
+  /*
+  var a1
+
+  a1 = 3
+   */
+  console.log(a1) // 可以访问, 值为undefined
+  // 函数提升: 将函数声明(定义)语句提前执行   函数声明提升
+  fn() // 可以直接调用
+
+  var a1 = 3
+
+  function fn() { // 函数定义不是在此处执行, 而是提前执行
+    console.log('fn()')
+  }
+
+  // console.log(a2) // 报错, 不用var声明的变量没有变量提升
+  a2 = 4
+
+  console.log(a3) // undefined 只用了变量提升, 没有使用函数提升(使用的是函数表达式语法)
+  var a3 = function () {
+
+  }
+
+
 </script>
 </body>
 </html>

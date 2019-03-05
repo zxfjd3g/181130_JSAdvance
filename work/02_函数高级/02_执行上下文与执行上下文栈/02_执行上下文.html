@@ -27,6 +27,33 @@
   * 开始执行函数体代码
 -->
 <script type="text/javascript">
+  // 全局执行上下文  window
+
+  console.log(window.a1) // undefined
+  window.fn()
+  console.log(this) // window
+
+  var a1 = 3
+  function fn() {
+    console.log('fn()')
+  }
+
+  // 函数执行上下文
+
+  function fun(a0) {
+    console.log(a0) // 1
+    console.log(a1) // undefind
+    a2() // a2()
+    console.log(this)  // window
+    console.log(arguments) // 包含1, 'abc'的伪数组
+
+    var a1 = 3
+    function a2() {
+      console.log('a2()')
+    }
+  }
+  fun(1, 'abc')
+
 
 </script>
 </body>
