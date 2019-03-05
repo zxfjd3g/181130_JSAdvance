@@ -7,13 +7,14 @@
 <body>
 <!--
 1. 依次输出什么?
-2. 整个过程中产生了几个执行上下文?
+2. 整个过程中产生了几个执行上下文?   1 + n(执行了几次函数)
 -->
 <script type="text/javascript">
   console.log('global begin: '+ i)
   var i = 1
-  foo(1);
+  foo(i);
   function foo(i) {
+
     if (i == 4) {
       return;
     }
@@ -22,6 +23,17 @@
     console.log('foo() end:' + i);
   }
   console.log('global end: ' + i)
+
+  /*
+  gb undefined
+  fb 1
+  fb 2
+  fb 3
+  fe 3
+  fe 2
+  fe 1
+  ge 1
+   */
 </script>
 
 </body>
