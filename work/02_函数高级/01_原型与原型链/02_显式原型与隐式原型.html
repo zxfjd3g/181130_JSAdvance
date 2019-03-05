@@ -33,6 +33,18 @@
   }
   fn.test()
 
+  /*
+  1. 关于显示原型(prototype)的问题
+    1). 什么时候添加的?  定义函数/创建函数对象 ==> js创建函数对象后, 自动给函数对象添加prototype属性
+    2). 值为多少?  空Object对象 ==> Fn.prototype = {}  Fn.prototytpe.constructor = Fn
+    3). 什么时候被使用?  创建函数的实例对象时使用
+
+  2. 关于隐式原型(__proto__)的问题
+    1). 什么时候添加的? 创建实例对象时 ==> js创建实例对象后, 自动给实例对象添加__proto__属性
+    2). 值为多少? 构造函数prototype属性值  ==> this.__proto__ = Fn.prototype
+    3). 什么时候被使用?  当查找对象中的某个属性, 但对象本身没有
+   */
+
 </script>
 </body>
 </html>

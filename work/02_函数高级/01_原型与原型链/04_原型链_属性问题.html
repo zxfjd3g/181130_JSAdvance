@@ -12,6 +12,24 @@
 -->
 <script type="text/javascript">
 
+  function Person(name, age) {
+    this.name = name
+    this.age = age
+  }
+  Person.prototype.setName = function (name) {
+    this.name = name
+  }
+  Person.prototype.sex = '男'
+
+  var p1 = new Person('Tom', 12)
+  p1.setName('Jack')
+  console.log(p1.name, p1.age, p1.sex)
+
+  p1.sex = '女'
+  console.log(p1.name, p1.age, p1.sex)
+
+  var p2 = new Person('Bob', 23)
+  console.log(p2.name, p2.age, p2.sex)
 </script>
 </body>
 </html>
