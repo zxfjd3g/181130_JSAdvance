@@ -11,6 +11,19 @@
 2. 死亡: 在嵌套的内部函数成为垃圾对象时
 -->
 <script type="text/javascript">
+  function fn1() {
+    var a = 3
+    var fn2 = function () {
+      a++
+      console.log(a)
+    }
+    return fn2
+  }
+  var f = fn1()
+  f() // 4
+  f() // 5
+
+  f = null // 使用内部函数对象成为垃圾对象, 从而被回收释放, 闭包也就不在了
 </script>
 </body>
 </html>

@@ -13,6 +13,33 @@
 需求: 点击某个按钮, 提示"点击的是第n个按钮"
 -->
 <script type="text/javascript">
+  var buttons = document.getElementsByTagName('button')
+  /*for (var i = 0; i < buttons.length; i++) {
+    var btn = buttons[i]
+    btn.onclick = function () { // 函数调用时i已经是3(for早已经执行完了)
+      alert(i+1)
+    }
+  }*/
+
+  // 方案一
+  /*for (var i = 0; i < buttons.length; i++) {
+    var btn = buttons[i]
+    btn.index = i // 给每个button对象保存对应的下标值属性
+    btn.onclick = function () {
+      alert(this.index + 1)
+    }
+  }*/
+
+  // 方案二
+  for (var i = 0; i < buttons.length; i++) {
+    (function (i) {
+      var btn = buttons[i]
+      btn.onclick = function () {
+        alert(i+1)
+      }
+    })(i)
+  }
+
 </script>
 </body>
 

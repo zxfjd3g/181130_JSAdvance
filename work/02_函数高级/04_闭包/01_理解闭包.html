@@ -16,9 +16,18 @@
 3. 产生闭包的条件?
   * 函数嵌套
   * 内部函数引用了外部函数的数据(变量/函数)
+  * 执行外部函数
 -->
 <script type="text/javascript">
 
+  function fn1() {
+    var a = 2
+    function fn2() {
+      console.log(a)
+    }
+  }
+  fn1()
+  console.log('---')
 </script>
 </body>
 </html>
