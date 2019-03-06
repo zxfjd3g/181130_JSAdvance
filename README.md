@@ -192,3 +192,142 @@
     作用域: 静态的, 编码时就确定了(不是在运行时), 一旦确定就不会变化了
     执行上下文: 动态的, 执行代码时动态创建, 当执行结束消失
     联系: 执行上下文环境是在对应的作用域中的
+    
+# day03
+# 1. 闭包 
+## 1). 理解:
+    当嵌套的内部函数引用了外部函数的变量时就产生了闭包
+    通过chrome工具得知: 闭包本质是内部函数中的一个对象, 这个对象中包含引用的变量属性
+## 2). 作用:
+    延长局部变量的生命周期
+    让函数外部能操作内部的局部变量
+## 3). 写一个闭包程序
+    function fn1() {
+      var a = 2;
+      function fn2() {
+        a++;
+        console.log(a);
+      }
+      return fn2;
+    }
+    var f = fn1();
+    f();
+    f();
+## 4). 闭包应用:
+    循环遍历加监听: 给多个li加点击监听, 读取当前下标
+    模块化: 封装一些数据以及操作数据的函数, 向外暴露一些行为
+    JS框架(jQuery)大量使用了闭包
+## 5). 缺点:
+    变量占用内存的时间可能会过长
+    可能导致内存泄露
+    解决: 及时释放 : f = null; //让内部函数对象成为垃圾对象
+    
+# 2. 内存溢出与内存泄露
+## 1). 内存溢出
+    一种程序运行出现的错误
+    当程序运行需要的内存超过了剩余的内存时, 就出抛出内存溢出的错误
+## 2). 内存泄露
+    占用的内存没有及时释放
+    内存泄露积累多了就容易导致内存溢出
+    常见的内存泄露:
+        意外的全局变量
+        没有及时清理的计时器或回调函数
+        闭包
+
+# 3. 对象的创建模式
+## 1). Object构造函数模式
+	var obj = {}
+	obj.name = 'Tom'
+	obj.setName = function(name){this.name=name}
+## 2). 对象字面量模式
+	var obj = {
+		name : 'Tom',
+		setName : function(name){this.name = name}
+	}
+## 3). 构造函数模式
+	function Person(name, age) {
+		this.name = name
+		this.age = age
+		this.setName = function(name){this.name=name}
+	}
+	new Person('tom', 12)
+## 4). 构造函数+原型的组合模式
+	function Person(name, age) {
+		this.name = name
+		this.age = age
+	}
+	Person.prototype.setName = function(name){this.name=name}
+	new Person('tom', 12)
+  
+# 4. 继承模式
+## 1). 原型链继承 : 得到方法
+	function Parent(){}
+	Parent.prototype.test = function(){}
+	function Child(){}
+	Child.prototype = new Parent() //子类原型指向父类的实例
+	Child.prototype.constructor = Child //原型的构造器指向构造函数
+	var child = new Child() 
+	child.test() //调用父类型的方法
+## 2). 借用构造函数 : 得到属性
+	function Parent(xxx){this.xxx = xxx}
+	Parent.prototype.test = function(){}
+	function Child(xxx,yyy){
+	  Parent.call(this, xxx) //借用父类型的构造函数 相当于:this.Parent(xxx)
+	}
+	var child = new Child('a', 'b')  //child.xxx为'a', 但child没有test()
+## 3). 组合
+	function Parent(xxx){this.xxx = xxx}
+	Parent.prototype.test = function(){}
+	function Child(xxx,yyy){
+	  Parent.call(this, xxx) //借用构造函数   this.Parent(xxx)
+	}
+	Child.prototype = new Parent() //得到test()
+	Child.proptotype.constructor = Child
+	var child = new Child() //child.xxx为'a', 也有test()
+	
+# 5. 线程与进程
+## 1). 进程:
+	程序的一次执行, 它占有一片独有的内存空间
+	可以通过windows任务管理器查看进程
+## 2). 线程:
+	是进程内的一个独立执行单元
+	是程序执行的一个完整流程
+	是CPU的最小的调度单元
+## 3). 关系
+	一个进程至少有一个线程(主)
+	程序是在某个进程中的某个线程执行的
+
+# 6. 浏览器内核模块组成
+## 1). 主线程
+	js引擎模块 : 负责js程序的编译与运行
+	html,css文档解析模块 : 负责页面文本的解析
+	DOM/CSS模块 : 负责dom/css在内存中的相关处理 
+	布局和渲染模块 : 负责页面的布局和效果的绘制(内存中的对象)
+## 2). 分线程
+	定时器模块 : 负责定时器的管理
+	事件响应模块 : 负责事件的管理
+	网络请求模块 : 负责Ajax请求
+
+## 3). js线程
+	js是单线程执行的(回调函数也是在主线程)
+	H5提出了实现多线程的方案: Web Workers   --->Worker
+	只能是主线程更新界面
+
+# 3. 定时器问题:
+	定时器并不真正完全定时
+	如果在主线程执行了一个长时间的操作, 可能导致延时才处理
+    
+# 7. 事件循环机制
+![事件循环](http://i.imgur.com/sKxdHu9.png)
+## 1). 代码分类
+	初始化执行代码: 包含绑定dom事件监听, 设置定时器, 发送ajax请求的代码
+	回调执行代码: 处理回调逻辑
+## 2). js引擎执行代码的基本流程: 
+	初始化代码===>回调代码
+## 3). 模型的2个重要组成部分:
+	事件管理模块
+	回调队列
+## 4). 模型的运转流程
+	执行初始化代码, 将事件回调函数交给对应模块管理
+	当事件发生时, 管理模块会将回调函数及其数据添加到回调列队中
+	只有当初始化代码执行完后(可能要一定时间), 才会遍历读取回调队列中的回调函数执行
