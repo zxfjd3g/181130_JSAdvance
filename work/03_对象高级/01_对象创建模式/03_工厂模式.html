@@ -12,6 +12,32 @@
   * 问题: 对象没有一个具体的类型, 都是Object类型
 -->
 <script type="text/javascript">
+  // 创建人对象的工厂函数(每次调用都会返回一个新的对象)
+  function createPerson(name, age) {
+    const obj = {
+      name: name,
+      age: age,
+      setName: function (name) {
+        this.name = name
+      }
+    }
+    return obj
+  }
+
+  function createDog(name) {
+    const obj = {
+      name: name
+    }
+    return obj
+  }
+
+  const a = createPerson('Tom', 12)
+  const b = createPerson('Jack', 13)
+
+  var c = createDog('wc')
+
+  // 问题: 创建出来的人对象与创建出来狗对象类型无法区别
+
 </script>
 </body>
 </html>

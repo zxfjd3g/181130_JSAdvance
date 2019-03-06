@@ -13,6 +13,25 @@
   * 问题: 每个对象都有相同的数据, 浪费内存
 -->
 <script type="text/javascript">
+  // 定义人的类型
+  function Person(name, age) {
+    this.name = name
+    this.age = age
+    this.setName = function (name) {
+      this.name = name
+    }
+  }
+  // 定义狗的类型
+  function Dog(name) {
+    this.name
+  }
+
+  var a = new Person('tom', 12)
+  var b = new Person('jack', 23)
+  var c = new Dog('wc')
+  console.log(b instanceof Person, b instanceof Dog) // true false
+  console.log(c instanceof Person, c instanceof Dog) // false true
+  console.log(a, b)
 
 </script>
 </body>

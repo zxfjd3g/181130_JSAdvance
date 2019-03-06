@@ -20,6 +20,33 @@
 -->
 <script type="text/javascript">
 
+  function Parent() {
+    this.pProp = 'Parent property'
+  }
+  Parent.prototype.showPProp = function () {
+    console.log('showPProp()', this.pProp)
+  }
+
+
+  function Child() {
+    this.cProp = 'Child property'
+  }
+
+  // 让子类型的原型指向父类型的实例
+  Child.prototype = new Parent()
+  // 给创建的原型对象指定constructor指向当前Child
+  Child.prototype.constructor = Child
+
+  Child.prototype.showCProp = function () {
+    console.log('showCProp()', this.cProp)
+  }
+
+  var child = new Child()
+  child.showCProp()
+  child.showPProp()
+  child.toString()
+  console.log(child.constructor)
+
 </script>
 </body>
 </html>

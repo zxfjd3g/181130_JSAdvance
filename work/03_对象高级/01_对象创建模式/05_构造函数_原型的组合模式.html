@@ -12,6 +12,21 @@
 -->
 <script type="text/javascript">
 
+  // 定义人的类型
+  function Person(name, age) {
+    // 在构造函数给实例添加属性
+    this.name = name
+    this.age = age
+  }
+  // 给原型对象添加方法
+  Person.prototype.setName = function (name) {
+    this.name = name
+  }
+
+  var p1 = new Person('tom', 12)
+  var p2 = new Person('jack', 13)
+  console.log(p1, p2)
+
 </script>
 </body>
 </html>
