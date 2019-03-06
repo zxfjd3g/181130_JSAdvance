@@ -8,9 +8,38 @@
 <!--
 方式3: 原型链+借用构造函数的组合继承
 1. 利用原型链实现对父类型对象的方法继承
-2. 利用super()借用父类型构建函数初始化相同属性
+2. 利用call()借用父类型构建函数初始化相同属性
 -->
 <script type="text/javascript">
+  function Person(name, age) {
+    this.name = name
+    this.age = age
+  }
+  Person.prototype.setName = function (name) {
+    this.name = name
+  }
+
+  function Student(name, age, price) {
+    Person.call(this, name, age)  // 为了得到父类型的属性
+    this.price = price
+  }
+
+  // 让子类型原型指向父类型的实例
+  Student.prototype = new Person()
+  // 让新的原型对象的constructor指向子类型函数
+  Student.prototype.constructor = Student
+
+  Student.prototype.setPrice = function (price) {
+    this.price = price
+  }
+
+  var s = new Student('Tom', 23, 13000)
+  s.setPrice(15000)
+  s.setName('Bob')
+  console.log(s.name, s.age, s.price)
+  console.log(s)
+
+  console.log(Object.prototype.__proto__) // null
 
 </script>
 </body>

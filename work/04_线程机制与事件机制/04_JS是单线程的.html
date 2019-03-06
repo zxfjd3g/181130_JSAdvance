@@ -25,6 +25,31 @@
   * 后面在某个时刻才会执行回调代码
 -->
 <script type="text/javascript">
+
+  /*
+  1. 先执行初始化代码
+  2. 后执行回调代码
+   */
+
+
+  document.getElementById('btn').onclick = function () {
+
+
+  }
+  setTimeout(function () {
+    console.log('3000')
+    alert(3000)
+  }, 3000)
+
+  setTimeout(function () {
+    console.log(2000)
+    alert(2000)
+  }, 2000)
+
+  console.log('alert执行之前')
+  alert('-------') // 暂停当前主线程的执行, 暂停计时
+  console.log('alert执行之后')
+
 </script>
 </body>
 </html>

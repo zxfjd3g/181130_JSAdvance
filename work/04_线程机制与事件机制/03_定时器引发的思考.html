@@ -18,6 +18,18 @@
   * 事件循环模型(后面讲)
 -->
 <script type="text/javascript">
+
+  document.getElementById('btn').onclick = function () {
+    var time = Date.now() // 得到当前时间值
+    setTimeout(function () {
+      console.log('定时器执行了', Date.now()-time) // 200  900
+    }, 200)
+    // 在启动定时器后, 执行一个长时间的工作
+    for (var i = 0; i < 1000000000; i++) {
+
+    }
+
+  }
 </script>
 </body>
 </html>
