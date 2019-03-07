@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>$Title$</title>
+</head>
+<body>
+<script type="text/javascript">
+ /* var obj = {}
+  for (var i = 0; i <100000; i++) {
+    obj[i] = new Array(1000000)
+  }*/
+
+ function fn() {
+   // 意外的全局变量
+   a = new Array(10000)
+ }
+ fn()
+
+  // 没有及时清理的计时器或回调函数
+  var intervalId = setInterval(function () {
+    console.log('-----')
+  }, 200)
+  console.log('intervalId', intervalId)
+  // 后面执行
+  // clearInterval(intervalId)
+</script>
+</body>
+</html>

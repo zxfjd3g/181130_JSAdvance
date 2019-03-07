@@ -15,6 +15,37 @@
 在分线程计算: 不会阻塞主线程
 -->
 <script type="text/javascript">
+  // f(n) = f(n-1) + f(n-2)
+  function fibonacci(num) {
+    return num<3 ? 1 : fibonacci(num-1) + fibonacci(num-2)
+  }
+  console.log(fibonacci(10))
+
+  var input = document.getElementById('number')
+  document.getElementById('btn1').onclick = function () {
+    var number = input.value
+    var result = fibonacci(number)
+    alert(result)
+  }
+
+
+  document.getElementById('btn2').onclick = function () {
+    var number = input.value*1
+
+    // 1. 创建worker对象
+    var worker = new Worker('worker.js')
+    worker.addEventListener('message', function (event) {
+      // 主线程接收分线程返回的消息数据
+      var result = event.data
+      console.log('主线程接收分线程返回的消息数据', result)
+      alert(result)
+    }, false);
+
+    worker.postMessage(number);
+    console.log('主线程向分线程发消息数据', number);
+  }
+
+
 </script>
 </body>
 
